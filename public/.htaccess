@@ -1,0 +1,437 @@
+# ===========================================================================
+# Sama Alras Technical Services — Apache / LiteSpeed config for Hostinger.
+# Upload the contents of Next's `out/` folder to the document root.
+#
+# `next build` with output:'export' and trailingSlash:false writes, for every
+# route, THREE things:
+#   1. a flat file          out/about.html, out/services/plumbing-services.html
+#   2. a sibling payload    out/about.txt
+#   3. a same-named FOLDER  out/about/  holding the RSC payloads
+#                           (__next._tree.txt, __next._full.txt, __next._index.txt,
+#                            __next.about/__PAGE__.txt) used for client-side nav.
+#
+# (3) is why the old "/page -> /page/index.html" rule cannot be kept: /about is
+# a real directory with no index.html in it. The ".html" mapping at the bottom
+# of the rewrite block is what turns a clean URL into its exported file — the
+# Apache spelling of `try_files $uri $uri.html` from the static-export docs.
+#
+# ---------------------------------------------------------------------------
+# RULE ORDER IS THE WHOLE GAME. Top to bottom inside the rewrite block:
+#   1. HTTPS guard             external 301   (CDN-safe — see the big warning)
+#   2. non-www                 external 301
+#   3. legacy service URLs     external 301   (BEFORE the slash strip, so the
+#                                              old /slug/ and /slug.html forms
+#                                              finish in ONE hop, not two)
+#   4. trailing-slash strip    external 301
+#   5. index.html / *.html     external 301   (THE_REQUEST-guarded — see below)
+#   6. real-file passthrough   [L]            (/_next/, images, robots.txt, …)
+#   7. soft-404 killers        404            (/404, /_not-found)
+#   8. bare-directory guard    404            (stops mod_autoindex 403s)
+#   9. .html mapping           INTERNAL       (/about -> /about.html)
+#
+# EVERY redirect hard-codes https://samalras.com. Reflecting %{HTTP_HOST} back
+# into a Location header is a host-header open redirect (a spoofed Host sends
+# your visitors — and Googlebot — to someone else's domain), and it also costs
+# an extra hop: http://www. -> https://www. -> https://. Hard-coding collapses
+# host+scheme correction into a single redirect.
+#
+# Canonical origin: https://samalras.com — non-www, HTTPS, extensionless, no
+# trailing slash. It must match SITE_URL + path in src/data/pageMeta.js exactly.
+# ===========================================================================
+
+
+# ---------------------------------------------------------------------------
+# Core / mod_dir directives — deliberately NOT inside <IfModule mod_rewrite.c>.
+# They are mod_core and mod_dir directives; wrapping them in a mod_rewrite
+# guard means that if mod_rewrite ever went missing, directory listings would
+# silently switch back ON while nobody noticed.
+# ---------------------------------------------------------------------------
+
+# -MultiViews is load-bearing, not decoration: with MultiViews ON, a request
+# for /about would be content-negotiated between about.html and about.txt.
+# -Indexes is defence in depth; rule 8 below turns bare directories into a
+# real 404 long before mod_autoindex is ever consulted.
+Options -MultiViews -Indexes
+
+<IfModule mod_dir.c>
+  # /about IS a real directory (the RSC payload folder). With DirectorySlash
+  # On, Apache would 301 /about -> /about/, i.e. bounce every visitor off the
+  # canonical URL onto a non-canonical one. Off keeps /about extensionless and
+  # lets the .html mapping below serve about.html for it.
+  DirectorySlash Off
+  DirectoryIndex index.html
+</IfModule>
+
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # =========================================================================
+  # 1. FORCE HTTPS — READ THIS BEFORE TOUCHING IT
+  # =========================================================================
+  # !!!  LOOP HAZARD  !!!
+  # The Hostinger CDN sits in front of this origin. If the CDN terminates TLS
+  # and then pulls the origin over plain HTTP, a naive `RewriteCond %{HTTPS}
+  # !=on` rule sees every single request as insecure and 301s it to the HTTPS
+  # URL it just came from — forever. The whole site becomes an infinite
+  # redirect loop, homepage included, and Google deindexes it within days.
+  #
+  # So this rule redirects ONLY when there is NO TLS signal of ANY kind:
+  # not the local HTTPS var, not port 443, and none of the proxy headers a
+  # terminating CDN sets. If any one of them says "this was HTTPS at the
+  # edge", we stay put and serve the page.
+  #
+  # VERIFY LIVE after deploying, before doing anything else:
+  #     curl -sI https://samalras.com/about      -> expect 200, no Location
+  #     curl -sI http://samalras.com/about       -> expect 301 -> https://…
+  #     curl -sI https://www.samalras.com/about  -> expect 301 -> non-www
+  # If https:// returns a 301 back to itself, you are looping. THE FIX IS TO
+  # DELETE THIS ENTIRE RULE and switch on "Force HTTPS" in hPanel instead —
+  # Hostinger applies it at the edge where the real scheme is known.
+  #
+  # DO NOT ENABLE HSTS UNTIL THAT curl CHECK PASSES. HSTS pins the browser to
+  # HTTPS for months, so if this rule is looping, HSTS makes the loop
+  # unrecoverable for every visitor who has already seen the header — you
+  # cannot fix it by turning the redirect off. See the commented-out
+  # Strict-Transport-Security line in the mod_headers block below.
+  RewriteCond %{HTTPS}                  !=on
+  RewriteCond %{SERVER_PORT}            !=443
+  RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
+  RewriteCond %{HTTP:X-Forwarded-SSL}   !^on$    [NC]
+  RewriteCond %{HTTP:CF-Visitor}    !^\{"scheme":"https"\} [NC]
+  RewriteRule ^ https://samalras.com%{REQUEST_URI} [L,R=301]
+
+  # =========================================================================
+  # 2. FORCE NON-WWW
+  # =========================================================================
+  # Target is hard-coded, so http://www.example -> https://samalras.com in the
+  # single hop above; this rule only has to catch https://www.
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://samalras.com%{REQUEST_URI} [L,R=301]
+
+  # =========================================================================
+  # 3. LEGACY SERVICE URLS -> /services/<slug>-services   (permanent, 301)
+  # =========================================================================
+  # The service pages used to live at the site root with a "-dubai" suffix.
+  # These 301s pass the ranking and link equity of the old URLs to the new
+  # ones and stop anything already indexed or linked from 404ing.
+  #
+  # This block MUST stay above the trailing-slash strip (rule 4) and above the
+  # .html canonicaliser (rule 5). If it sits below either of them, the `/?` and
+  # `(\.html)?` alternatives here become dead code and every legacy hit pays an
+  # extra redirect: /slug/ -> /slug -> /services/slug-services. Above them,
+  # every legacy form resolves in exactly one hop.
+  #
+  # `(\.html)?` matters for a second reason: the old rules were $-anchored on
+  # the bare slug, so /painting-services-dubai.html fell through to the
+  # real-file passthrough and Apache happily served an indexable 200 stub of a
+  # URL we had supposedly retired.
+  #
+  # This is THE redirect mechanism for production. `output: 'export'` cannot
+  # emit HTTP redirects, so there is no application-level fallback by design —
+  # old URLs 404 under `next dev`, which is expected and does not affect the
+  # deployed site. vercel.json mirrors these five mappings; keep the two in
+  # sync, and never change a target without changing it in both places.
+  #
+  # KEEP THESE INDEFINITELY — old backlinks and Google's index do not expire.
+  RewriteRule ^painting-services-dubai(\.html)?/?$    https://samalras.com/services/painting-services         [L,R=301]
+  RewriteRule ^spc-flooring-dubai(\.html)?/?$         https://samalras.com/services/spc-flooring-services     [L,R=301]
+  RewriteRule ^electrician-services-dubai(\.html)?/?$ https://samalras.com/services/electrician-services      [L,R=301]
+  RewriteRule ^ac-duct-cleaning-dubai(\.html)?/?$     https://samalras.com/services/ac-duct-cleaning-services [L,R=301]
+  RewriteRule ^plumbing-services-dubai(\.html)?/?$    https://samalras.com/services/plumbing-services         [L,R=301]
+
+  # =========================================================================
+  # 4. STRIP TRAILING SLASHES
+  # =========================================================================
+  # Canonicals, sitemap and <Link> hrefs are all extensionless with no trailing
+  # slash, so /about/ has to fold onto /about. The root "/" is excluded — it
+  # has nothing to strip and would otherwise redirect to the empty string.
+  # `(.+?)/+` collapses //, ///, … in a single hop instead of one per slash.
+  RewriteCond %{REQUEST_URI} !^/$
+  RewriteRule ^(.+?)/+$ https://samalras.com/$1 [L,R=301]
+
+  # =========================================================================
+  # 5. CANONICALISE THE .html FORM AWAY
+  # =========================================================================
+  # Every page is otherwise reachable at three URLs — /about, /about.html and
+  # /about.txt — which is textbook duplicate content. /about.html folds onto
+  # /about here; /about.txt is handled with X-Robots-Tag: noindex further down
+  # (it CANNOT be redirected: the .txt payloads are what the client-side router
+  # fetches, and a 301 would break navigation).
+  #
+  # !!!  LOOP HAZARD — THIS IS THE CLASSIC MISTAKE  !!!
+  # The obvious version of this rule tests %{REQUEST_URI} or %{THE_REQUEST}'s
+  # substitute, and it deadlocks with rule 9. Rule 9 internally rewrites
+  # /about -> /about.html. In .htaccess (per-directory) context an internal
+  # rewrite is re-injected and the WHOLE ruleset runs again from the top — [L]
+  # only ends the current pass, it does not end the request. On that second
+  # pass %{REQUEST_URI} really is "/about.html", so a REQUEST_URI-based rule
+  # fires, 301s to /about, which rewrites to /about.html, which 301s to
+  # /about … an infinite external redirect loop.
+  #
+  # %{THE_REQUEST} is the raw first line of the client's HTTP request
+  # ("GET /about HTTP/1.1"). Internal rewrites never touch it, and subrequests
+  # inherit it unchanged, so it is true if and only if the CLIENT actually
+  # asked for the .html URL. That is the whole reason it is used here.
+  #
+  # `[^?\s]+?` cannot cross a "?", so /about?ref=x.html is not mistaken for an
+  # .html request, and the trailing `[\s?]` anchors the match at the end of the
+  # path. mod_rewrite re-appends the original query string automatically.
+
+  # 5a. /index.html (and any /*/index.html) -> the directory itself.
+  #     Must run before 5b, which would otherwise produce "/index".
+  RewriteCond %{THE_REQUEST} \s/+([^?\s]*?)index\.html[\s?] [NC]
+  RewriteRule ^ https://samalras.com/%1 [L,R=301]
+
+  # 5b. /about.html -> /about
+  RewriteCond %{THE_REQUEST} \s/+([^?\s]+?)\.html[\s?] [NC]
+  RewriteRule ^ https://samalras.com/%1 [L,R=301]
+
+  # 5c. Rule 9 maps /index onto index.html as well, which resurrects the
+  #     homepage at a second URL. Fold it back onto "/". ("/" itself matches an
+  #     empty per-directory path, so it cannot match this pattern — no loop.)
+  RewriteRule ^index/?$ https://samalras.com/ [L,R=301]
+
+  # =========================================================================
+  # 6. REAL FILES ARE SERVED AS-IS
+  # =========================================================================
+  # /_next/ chunks, fonts, images, robots.txt, sitemap.xml, llms.txt, the RSC
+  # payloads (/about.txt, /about/__next._tree.txt) and — critically — the
+  # ErrorDocument target /404.html all terminate here, before anything below
+  # can touch them. This is also the [L] that ends the second pass created by
+  # rule 9's internal rewrite.
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # =========================================================================
+  # 7. NO SOFT-404s
+  # =========================================================================
+  # /404 and /_not-found are exported as real pages (404.html, _not-found.html)
+  # so rule 9 would happily serve them with a 200 status: a soft 404, which
+  # Google reports as an error and which hides genuine problems. Give them the
+  # status they are claiming.
+  #
+  # The .html form is deliberately NOT matched here. ErrorDocument below does
+  # an INTERNAL redirect to /404.html, which re-runs this whole ruleset; if
+  # this pattern also matched "404.html" it would fire again, trigger the
+  # ErrorDocument again, and Apache would bail out with "Request exceeded the
+  # limit of 10 internal redirects" — a 500 on every 404 page. /404.html and
+  # /_not-found.html are already handled: rule 5b 301s them to /404 and
+  # /_not-found, which land here. And because this sits BELOW rule 6, the
+  # ErrorDocument file is served long before this rule is consulted.
+  RewriteRule ^(404|_not-found)/?$ - [R=404,L]
+
+  # =========================================================================
+  # 8. BARE DIRECTORIES MUST 404, NOT 403
+  # =========================================================================
+  # `Options -Indexes` + `DirectorySlash Off` + a directory with no index.html
+  # = mod_autoindex returning HTTP 403 Forbidden. The export is full of such
+  # directories: /images, /images/services, /_next, /_next/static,
+  # /_next/static/chunks, /_next/static/media, the empty build-id folder, and
+  # every __next.* RSC payload folder (/about/__next.about,
+  # /services/painting-services/__next.services/$d$service, …). /services was
+  # one too, until the hub page shipped. A 403 tells a crawler "this exists but
+  # you may not have it", which is both wrong and unfixable from Search
+  # Console; a 404 is the truth.
+  #
+  # The `.html !-f` condition is what keeps real pages working: /about is also
+  # a directory, but about.html exists beside it, so this rule stands down and
+  # rule 9 serves the page. Once out/services.html exists, /services resolves
+  # 200 by exactly the same mechanism — this rule stays as the safety net for
+  # every OTHER bare directory.
+  #
+  # `!^/$` exempts the document root, which is a directory with no root.html
+  # and would otherwise 404 the homepage. DirectoryIndex serves index.html for
+  # it instead.
+  RewriteCond %{REQUEST_URI}      !^/$
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}.html !-f
+  RewriteRule ^ - [R=404,L]
+
+  # =========================================================================
+  # 9. CLEAN URL -> EXPORTED FILE   (internal rewrite, no redirect)
+  # =========================================================================
+  # /about -> /about.html, /services/plumbing-services -> …/plumbing-services.html
+  # Anything with no matching .html falls straight through to a genuine 404.
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ /$1.html [L]
+</IfModule>
+
+
+# ---------------------------------------------------------------------------
+# Error documents — the exported Next not-found page, which is noindex.
+# 403 is mapped too purely as a safety net: rule 8 should mean no request ever
+# reaches mod_autoindex, but if a directory somehow slips through, visitors get
+# the styled page instead of Apache's bare "Forbidden".
+# /404.html is a real file, so serving it can never itself 403 or loop.
+# ---------------------------------------------------------------------------
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
+
+
+# ---------------------------------------------------------------------------
+# Caching (mod_expires) — the baseline. mod_headers below is the authority for
+# Cache-Control and overrides these per file type; mod_expires still supplies
+# the legacy Expires header for intermediaries that only understand HTTP/1.0.
+# ---------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg              "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType image/gif               "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/avif              "access plus 1 year"
+  ExpiresByType image/x-icon            "access plus 1 year"
+  ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType text/javascript         "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+  ExpiresByType application/font-woff2  "access plus 1 year"
+  ExpiresByType application/xml         "access plus 1 hour"
+  ExpiresByType text/xml                "access plus 1 hour"
+  # RSC payloads (.txt). Without this they had NO cache policy at all and fell
+  # back to heuristic freshness — see the mod_headers note below for why that
+  # is actively dangerous. robots.txt and llms.txt are text/plain too and get
+  # a real TTL back in mod_headers.
+  ExpiresByType text/plain              "access plus 0 seconds"
+  ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
+
+
+<IfModule mod_headers.c>
+  # -------------------------------------------------------------------------
+  # Two notes that apply to every block below.
+  #
+  # `Header always set` (not `Header set`): plain `set` only writes to the
+  # success header table, so a 404 or 403 response ships with NONE of these —
+  # no nosniff, no frame protection, no cache policy, exactly on the responses
+  # where a bare unstyled page is most likely to be probed. `always` writes to
+  # the table that is used for error responses too.
+  #
+  # The single `Header unset Cache-Control` below is not redundant. On Apache,
+  # `Header always set` writes to a DIFFERENT header table from the one
+  # mod_expires writes to, and both tables are emitted — so without the unset,
+  # every response would carry TWO conflicting Cache-Control headers (mod_expires'
+  # bare `max-age=…` plus ours). This clears mod_expires' value so exactly one
+  # header ships. It sits in the .htaccess body rather than inside each
+  # <FilesMatch> because Apache merges body directives BEFORE section ones, so
+  # one line here covers every block below. Every file type this site actually
+  # serves is given a Cache-Control again by one of the rules that follow.
+  # -------------------------------------------------------------------------
+  Header unset Cache-Control
+
+  # --- Hashed build assets: immutable, but ONLY under /_next/static/ ---------
+  # This used to be <FilesMatch "\.(js|css|woff2)$">, which is filename-scoped,
+  # not path-scoped: it stamped `immutable` on ANY .js/.css/.woff2 anywhere in
+  # the tree, including any future hand-added asset whose filename has no
+  # content hash. Such a file could never be updated again for a year.
+  # SetEnvIf matches on the request PATH, which is what we actually mean, and
+  # unlike Apache 2.4's <If> it behaves reliably on LiteSpeed.
+  SetEnvIf Request_URI "^/_next/static/" NEXT_IMMUTABLE
+  Header always set Cache-Control "public, max-age=31536000, immutable" env=NEXT_IMMUTABLE
+
+  # --- Images: a year, but revalidatable when you swap one ------------------
+  # (?i) instead of hand-patching |JPG| into the list — case-insensitive at the
+  # pattern level catches .JPEG, .PNG, .WebP and everything else.
+  <FilesMatch "(?i)\.(jpe?g|png|gif|svg|webp|avif|ico)$">
+    Header always set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+
+  # --- HTML: always revalidate, at the browser AND at the CDN ---------------
+  # Every page on this site is a static .html file, which is exactly what the
+  # Hostinger CDN is built to cache and hold. s-maxage=0 states the intent to
+  # the shared cache explicitly rather than hoping it infers it from max-age,
+  # so a content edit is live on the next deploy instead of whenever the edge
+  # decides to expire. must-revalidate keeps the browser honest as well.
+  <FilesMatch "(?i)\.html$">
+    Header always set Cache-Control "public, max-age=0, s-maxage=0, must-revalidate"
+  </FilesMatch>
+
+  # --- RSC payloads (.txt): never cache, never index ------------------------
+  # about.txt and about/__next._tree.txt hard-code the /_next/static/chunks/…
+  # URLs of the CURRENT build. Those chunk filenames are content-hashed, so the
+  # next deploy deletes them. A payload served from a stale cache therefore
+  # points at chunks that no longer exist and client-side navigation 404s —
+  # the user clicks a nav link and the page silently fails to render. Hence
+  # max-age=0 AND s-maxage=0: neither the browser nor the CDN may hold these.
+  #
+  # X-Robots-Tag: noindex because /about.txt is a full duplicate of /about's
+  # content at a crawlable URL, and unlike the .html form it cannot be 301ed
+  # away — the router needs it to return 200.
+  <FilesMatch "(?i)\.txt$">
+    Header always set Cache-Control "public, max-age=0, s-maxage=0, must-revalidate"
+    Header always set X-Robots-Tag "noindex"
+  </FilesMatch>
+
+  # --- …except robots.txt and llms.txt, which MUST stay crawlable -----------
+  # This block has to come AFTER the generic .txt block: Apache merges
+  # <FilesMatch> sections in the order they appear in the file and mod_headers
+  # applies its directives in that same order, so the last word wins. (Do not
+  # rewrite this as <Files "robots.txt"> — <Files> sections are merged BEFORE
+  # all <FilesMatch> sections, so the unset would run first and lose.)
+  #
+  # `Header always unset`, not `Header unset`: the noindex above was written
+  # with `always`, i.e. into the error-header table. A plain `unset` reads the
+  # other table and would leave the noindex in place — robots.txt would ship
+  # noindex and llms.txt would be invisible to the AI crawlers it exists for.
+  <FilesMatch "(?i)^(robots|llms)\.txt$">
+    Header always unset X-Robots-Tag
+    Header always set Cache-Control "public, max-age=3600, s-maxage=3600"
+  </FilesMatch>
+
+  # --- sitemap.xml ----------------------------------------------------------
+  <FilesMatch "(?i)\.xml$">
+    Header always set Cache-Control "public, max-age=3600, s-maxage=3600"
+  </FilesMatch>
+
+  # -------------------------------------------------------------------------
+  # Security headers — all `always`, so the 404/403 pages carry them too.
+  # -------------------------------------------------------------------------
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # frame-ancestors is the modern, CSP-native replacement for X-Frame-Options;
+  # both are sent because older browsers only understand the latter. This is a
+  # frame-ancestors-ONLY policy — it deliberately restricts nothing else, so it
+  # cannot break GTM, Web3Forms or the fonts. It matches the SAMEORIGIN rule
+  # above exactly, so it introduces no behaviour that is not already in force.
+  Header always set Content-Security-Policy "frame-ancestors 'self'"
+  # Send the full referrer to ourselves, origin-only cross-origin, nothing on a
+  # downgrade — keeps GA/GTM attribution intact without leaking paths.
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Nothing on this site asks for these; refusing them up front means a
+  # compromised third-party tag cannot ask for them either.
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+  # !!!  DO NOT UNCOMMENT UNTIL THE HTTPS RULE IS VERIFIED LIVE  !!!
+  # HSTS pins every visitor's browser to HTTPS for the max-age below. If the
+  # Force-HTTPS rule at the top of this file is looping behind the CDN, HSTS
+  # makes that loop UNRECOVERABLE — you cannot fix it by deleting the redirect,
+  # because the browser will keep forcing HTTPS from its own cache for months.
+  # Enable this only after `curl -sI https://samalras.com/about` has returned a
+  # clean 200 with no Location header. Add `preload` only after that has been
+  # stable for weeks; preload is effectively irreversible.
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+
+# ---------------------------------------------------------------------------
+# Compression. The .txt RSC payloads are 60–150 KB of plain text each, so
+# text/plain being in these lists matters as much as text/html.
+# Brotli is listed first; mod_deflate stands down on its own when a
+# Content-Encoding has already been applied. (LiteSpeed handles compression
+# itself and largely ignores both blocks — they are here for portability and
+# for the day this moves back to stock Apache.)
+# ---------------------------------------------------------------------------
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript text/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS application/xml application/rss+xml image/svg+xml
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript text/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml application/rss+xml image/svg+xml
+</IfModule>

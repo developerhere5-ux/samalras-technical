@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/painting-services-dubai", "destination": "/services/painting-services", "permanent": true },
+    { "source": "/spc-flooring-dubai", "destination": "/services/spc-flooring-services", "permanent": true },
+    { "source": "/electrician-services-dubai", "destination": "/services/electrician-services", "permanent": true },
+    { "source": "/ac-duct-cleaning-dubai", "destination": "/services/ac-duct-cleaning-services", "permanent": true },
+    { "source": "/plumbing-services-dubai", "destination": "/services/plumbing-services", "permanent": true }
+  ]
+}

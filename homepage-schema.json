@@ -1,0 +1,225 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "PropertyMaintenance",
+    "@id": "https://samalras.com/",
+    "name": "Sama Alras Technical Services",
+    "legalName": "Sama Alras Technical Services",
+    "description": "Sama Alras Technical Services is a licensed Dubai company providing professional painting, licensed plumbing, SPC and other flooring, AC duct cleaning, and licensed electrical services across every community in Dubai.",
+    "url": "https://samalras.com/",
+    "telephone": "+971582731458",
+    "image": "https://samalras.com/og-cover.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Office G06-128, The Exchange Tower",
+      "addressLocality": "Business Bay, Dubai",
+      "addressRegion": "Dubai",
+      "addressCountry": "AE"
+    },
+    "identifier": {
+      "@type": "PropertyValue",
+      "name": "License Number",
+      "value": "923026"
+    },
+    "sameAs": [
+      "https://share.google/v2XOAaBq1nnG4rdmv",
+      "https://www.facebook.com/samaalrastechnical/",
+      "https://www.instagram.com/samaalras/"
+    ],
+    "hasMap": "https://share.google/v2XOAaBq1nnG4rdmv",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 25.186342,
+      "longitude": 55.260148
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Dubai"
+      },
+      {
+        "@type": "Place",
+        "name": "Dubai Marina"
+      },
+      {
+        "@type": "Place",
+        "name": "Downtown Dubai"
+      },
+      {
+        "@type": "Place",
+        "name": "Business Bay"
+      },
+      {
+        "@type": "Place",
+        "name": "Jumeirah"
+      },
+      {
+        "@type": "Place",
+        "name": "Palm Jumeirah"
+      },
+      {
+        "@type": "Place",
+        "name": "Arabian Ranches"
+      },
+      {
+        "@type": "Place",
+        "name": "Dubai Hills Estate"
+      },
+      {
+        "@type": "Place",
+        "name": "JVC"
+      },
+      {
+        "@type": "Place",
+        "name": "JLT"
+      }
+    ],
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "08:00",
+      "closes": "22:00"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Technical Services in Dubai",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Painting Services in Dubai",
+            "url": "https://samalras.com/services/painting-services",
+            "description": "Professional painters in Dubai for villas, apartments, offices and building exteriors, plus move-out repaints and waterproofing. Full surface preparation, premium paints and a written warranty on every job."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "SPC Flooring in Dubai",
+            "url": "https://samalras.com/services/spc-flooring-services",
+            "description": "Supply and installation of 100% waterproof, scratch-resistant SPC flooring in Dubai, plus vinyl, laminate, wooden, parquet and epoxy floors. Free on-site measurement, fast fitting and clean handover."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Electrician Services in Dubai",
+            "url": "https://samalras.com/services/electrician-services",
+            "description": "Licensed electricians in Dubai for wiring and rewiring, light and chandelier installation, DB board repairs, switches and sockets, ceiling fans and 24/7 emergency fault finding. Safe, tidy and fully insured."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AC Duct Cleaning in Dubai",
+            "url": "https://samalras.com/services/ac-duct-cleaning-services",
+            "description": "Professional AC duct cleaning in Dubai for villas, apartments and offices: full duct, coil, AC vent and filter cleaning plus anti-bacterial sanitising. Cleaner air, better cooling and a written guarantee on every job."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Plumbing Services in Dubai",
+            "url": "https://samalras.com/services/plumbing-services",
+            "description": "Licensed plumbers in Dubai for emergency leaks, blocked drains, kitchen sink problems, water heater repair and full bathroom installation. Same-day service, fixed written pricing and 24/7 emergency cover."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://samalras.com/#faq",
+    "isPartOf": {
+      "@id": "https://samalras.com/#webpage"
+    },
+    "inLanguage": "en",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What services does Sama Alras Technical Services offer in Dubai?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer five core services, each handled by its own specialist team. Painting covers villas, apartments, offices and building exteriors, plus move-in and move-out repaints and waterproofing with wall repair. Plumbing covers 24/7 emergency call-outs, leak detection and pipe repair, blocked drains and sewers, kitchen sink drain problems, water heater repair and installation, and bathroom and sanitary ware fitting. Flooring covers supply and installation of 100% waterproof SPC flooring along with vinyl and LVT, wooden and parquet, laminate, epoxy and carpet. Electrical covers wiring and rewiring, light and chandelier installation, DB board and fuse box repair, switches, sockets and power points, ceiling fans and 24/7 emergency fault finding. AC duct cleaning covers ducts, evaporator and condenser coils, vents, grilles, filters and drain trays, plus anti-bacterial sanitisation and commercial HVAC work. Every one of them includes a free site visit, a fixed written quote and a workmanship warranty."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can one team handle painting, plumbing, flooring and electrical work together?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, and it is usually cheaper and faster than hiring separately. Because all five trades are in-house, we sequence them in the correct order on a single schedule: plumbing and electrical first chasing, pipework and wiring, then painting, then flooring last so newly laid floors are not damaged by paint, water or cable work. Hiring separate contractors almost always means each blames the other for damage and you coordinate the timeline yourself. With one company there is a single point of contact, one written quote covering everything, one team accountable for the finished result and one warranty rather than four. This matters most on renovations, handovers and villa refurbishments where several trades overlap in the same rooms within a tight window, and especially in bathrooms and kitchens where plumbing, tiling, electrics and paint all meet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which areas of Dubai do you cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We serve every community in Dubai. That includes Dubai Marina, Downtown Dubai, Business Bay, Jumeirah, Palm Jumeirah, Arabian Ranches, Dubai Hills Estate, JVC, JLT, The Springs, Mirdif, Al Barsha, Motor City, Damac Hills, Deira, Bur Dubai, International City, Silicon Oasis, Town Square and Emirates Hills. Our crews are stationed across the city rather than run from a single depot, which is how we keep same-day site visits realistic instead of promising them and arriving the following week. There is no minimum job size or travel surcharge for any Dubai community. If you are unsure whether we reach your building or compound, send the location on WhatsApp and we will confirm immediately along with the earliest available slot."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are you licensed and insured?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Sama Alras Technical Services is a licensed Dubai company holding trade licence 923026, and every tradesman on our team is background-checked, uniformed and covered by full liability insurance, so you are protected if anything is damaged while we work. Electrical work is carried out to DEWA and UAE safety standards without exception, and plumbing work to UAE plumbing and building standards with every water connection pressure-tested before sign-off, including on small jobs where shortcuts are most tempting and most dangerous. Every project carries a written workmanship warranty printed on the quotation rather than promised verbally, running up to five years on exterior painting and waterproofing. We are happy to provide the licence number and insurance details before you book, and we would encourage you to ask any Dubai contractor for the same."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer emergency call-outs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, for both plumbing and electrical faults, 24 hours a day and seven days a week across every Dubai community. Call us immediately for a burst pipe, an overflowing toilet, water coming through a ceiling, a total power failure, repeated tripping that will not reset, sparking or scorched sockets, a burning smell, or water reaching a DB board, and we will tell you on the phone whether to isolate the water at the stopcock or the main switch before we arrive. Emergency jobs are dispatched to the nearest available licensed plumber or electrician rather than queued behind scheduled work. Painting, flooring and AC duct cleaning are not emergency services, but we do offer same-day site visits and, for move-out repaints where a handover date is looming, same-day and next-day completion. Our standard hours are 8am to 10pm, seven days a week."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://samalras.com",
+    "url": "https://samalras.com/",
+    "name": "Painting, Plumbing, Flooring, AC Cleaning & Electrician Dubai | Sama Alras",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Sama Alras Technical Services",
+      "url": "https://samalras.com/"
+    },
+    "about": {
+      "@id": "https://samalras.com/about"
+    },
+    "breadcrumb": {
+      "@id": "https://samalras.com/#breadcrumb"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://samalras.com/#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://samalras.com/"
+      }
+    ]
+  }
+]

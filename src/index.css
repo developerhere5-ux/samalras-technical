@@ -1,0 +1,358 @@
+@import "tailwindcss";
+
+@theme {
+  /* Both families are self-hosted by next/font (see src/app/layout.jsx), which
+     sets these two variables on <html>. */
+  --font-display: var(--font-display-family), var(--font-outfit), system-ui, sans-serif;
+  --font-body: var(--font-outfit), system-ui, sans-serif;
+
+  /* --color-sand-200: #e8d9b5; */
+  /* light beige sand */
+  /* --color-sand-300: #d6c08f; */
+  /* desert dune tone */
+
+  /* Sky tones (very light but distinct) */
+  /* --color-sky-50: #eaf6fb; */
+  /* pale sky blue */
+  /* --color-sky-100: #d4ecf7; */
+  /* soft morning sky */
+
+  --animate-float-slow: float 14s ease-in-out infinite;
+  --animate-float-slower: float 20s ease-in-out infinite reverse;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.gradient-text {
+  background-image: linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 50%, #1e40af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(40px, -30px, 0);
+  }
+}
+
+.animate-float-slow,
+.animate-float-slower {
+  will-change: transform;
+}
+
+@keyframes icon-bounce {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.animate-icon-bounce {
+  animation: icon-bounce 1.5s infinite ease-in-out;
+}
+
+/* html {
+  scroll-behavior: smooth;
+} */
+
+body {
+  font-family: var(--font-body);
+
+  /* background-color: #eed8af; */
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.glass {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.46));
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 20px 50px -20px rgba(30, 64, 175, 0.18);
+}
+
+.glass-strong {
+  position: relative;
+  background: linear-gradient(120deg, rgba(91, 187, 255, 0.946), rgba(255, 255, 255, 0.849));
+  backdrop-filter: blur(80px) saturate(120%);
+  -webkit-backdrop-filter: blur(90px) saturate(130%);
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 25px 60px -25px rgba(30, 64, 175, 0.22);
+}
+
+
+.glass-strong {
+  position: relative;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.849));
+  backdrop-filter: blur(240px) saturate(280%);
+  -webkit-backdrop-filter: blur(90px) saturate(100%);
+  border: 1px solid rgb(255, 255, 255);
+  /* box-shadow: */
+  /* 0 1px 2px rgba(255, 255, 255, 0), */
+  /* 0 25px 60px 25px rgba(0, 0, 0, 0.718); */
+}
+
+
+/* Overlay panel for the desktop nav dropdown. `.glass` and `.glass-strong` sit
+   on top of known backgrounds, but a dropdown floats over arbitrary page content
+   (hero headlines, photos), so at their opacity the text underneath bleeds
+   through and the menu becomes unreadable. This is deliberately near-opaque and
+   keeps the frosted look through blur + saturation rather than transparency.
+
+   Note: no `position` declaration here on purpose. These classes are unlayered,
+   so they override Tailwind utilities — `.glass-strong { position: relative }`
+   is what silently killed `absolute` on this dropdown. */
+.glass-menu {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.97), rgba(238, 246, 255, 0.96));
+  /* Unprefixed ONLY. Declaring `-webkit-backdrop-filter` alongside it makes
+     Lightning CSS (Tailwind v4 / Next) collapse the pair down to the -webkit-
+     form alone, which current Chrome does not support — so the blur silently
+     dies. Let the build add prefixes from the browser targets instead. */
+  backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 24px 60px -20px rgba(30, 64, 175, 0.35);
+}
+
+.glass-chip {
+  background: transparent;
+  backdrop-filter: blur(80px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  box-shadow:
+    /* inset 4px px 0px rgb(0, 0, 0), */
+    4px 3px 2px rgba(10, 10, 20, 0.55);
+}
+
+.liquid-glass {
+  --lg-bg: linear-gradient(155deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.014) 55%, rgba(255, 255, 255, 0.322));
+  --lg-blur: 12px;
+  --lg-saturate: 185%;
+  --lg-edge: rgba(15, 36, 199, 0.95);
+  --lg-edge-2: rgb(10, 10, 10);
+  --lg-shadow: rgb(30, 64, 175);
+
+  position: relative;
+  background: var(--lg-bg);
+  box-shadow:
+    0 8px 24px -12px rgba(2, 6, 23, 0.28),
+    0 34px 68px -30px var(--lg-shadow);
+}
+
+.liquid-glass-clear {
+  --lg-bg: linear-gradient(160deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.06) 60%, rgba(255, 255, 255, 0.2));
+  --lg-blur: 1px;
+  --lg-saturate: 160%;
+}
+
+.liquid-glass-sky {
+  --lg-bg: linear-gradient(155deg, rgba(186, 230, 253, 0.6), rgba(191, 219, 254, 0.2) 55%, rgba(224, 242, 254, 0.46));
+  --lg-edge: rgba(0, 0, 0, 0.95);
+  --lg-shadow: rgba(2, 132, 199, 0.38);
+}
+
+/* Tinted variant: a deep colour wash in the illumination layer. Alpha stays
+   below 1 and the backdrop-filter keeps working, so these read as coloured
+   glass rather than a flat fill, while carrying a white glyph at full
+   contrast. Brightness is held at 1 — lifting it would wash the tint out. */
+.liquid-glass-call {
+  --lg-bg: linear-gradient(125deg, rgba(28, 58, 168, 0.88), rgba(46, 79, 201, 0.66) 55%, rgba(28, 58, 168, 0.82));
+  /* --lg-blur: 10px; */
+  /* --lg-brightness: 1; */
+  --lg-edge: rgba(24, 24, 24, 0.85);
+  /* --lg-edge-2: rgba(0, 0, 0, 0.28); */
+  --lg-shadow: rgba(28, 58, 168, 0.55);
+}
+
+/* WhatsApp brand green, deepened so a white glyph clears 4.5:1. */
+.liquid-glass-wa {
+  --lg-bg: linear-gradient(155deg, rgba(18, 140, 79, 0.88), rgba(31, 175, 90, 0.66) 55%, rgba(18, 140, 79, 0.82));
+  --lg-blur: 10px;
+  --lg-brightness: 1;
+  /* --lg-edge: rgba(255, 255, 255, 0.85); */
+  /* --lg-edge-2: rgba(255, 255, 255, 0.28); */
+  /* --lg-shadow: rgba(18, 140, 79, 0.55); */
+}
+
+@media (prefers-reduced-transparency: reduce) {
+
+  .glass,
+  .glass-strong,
+  .glass-chip,
+  .liquid-glass {
+    /* background: rgba(255, 255, 255, 0.97); */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* The tinted variants carry white glyphs, so they need a solid dark fill
+     here — the white fallback above would render their icons invisible. */
+  .liquid-glass-call {
+    background: #092fba;
+  }
+
+  .liquid-glass-wa {
+    background: #128c4f;
+  }
+}
+
+.glass-card {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 28px 60px -24px rgba(30, 64, 175, 0.28);
+}
+
+.rule::before {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-brand-600);
+  margin-bottom: 1.25rem;
+}
+
+.btn-press:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Mobile-first alignment. Content reads centred on phones and reverts to
+   left-aligned from the sm breakpoint up. text-align is inherited, so a child
+   that sets its own alignment still wins — this only fills in the default. */
+@media (max-width: 639.98px) {
+  .mobile-center {
+    text-align: center;
+  }
+
+  /* The accent bar is a fixed-width block, so it needs centring explicitly. */
+  .mobile-center .rule::before {
+    margin-inline: auto;
+  }
+
+  /* Width-constrained prose blocks are left-anchored by default. */
+  .mobile-center :where([class*="max-w-"]) {
+    margin-inline: auto;
+  }
+
+  /* Bulleted lists would otherwise sit off-centre from their markers. */
+  .mobile-center :where(ul, ol) {
+    list-style-position: inside;
+  }
+
+  /* Preflight sets svg and img to display:block, so text-align cannot centre
+     them — section and card icons need an explicit auto inline margin. */
+  .mobile-center :where(svg, img) {
+    margin-inline: auto;
+  }
+
+  /* Except inside a flex row, where an auto inline margin would swallow the
+     row's free space and pull the icon away from its label. */
+  .mobile-center :where(.flex, .inline-flex)> :where(svg, img) {
+    margin-inline: 0;
+  }
+}
+
+.marquee-viewport {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(30, 64, 175, 0.5) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 13px;
+  height: 13px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(96, 165, 250, 0.55), rgba(30, 64, 175, 0.6));
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 0 6px rgba(255, 255, 255, 0.35);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(96, 165, 250, 0.8), rgba(30, 64, 175, 0.85));
+  background-clip: padding-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .glass-card {
+    transition: none;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  [class*="animate-"] {
+    animation: none !important;
+  }
+}
