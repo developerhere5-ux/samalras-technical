@@ -6,6 +6,10 @@ const nextConfig = {
      still building fine on Vercel. */
   output: 'export',
 
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
   /* Canonical URLs are extensionless and have no trailing slash
      (https://samalras.com/about), which is what `public/.htaccess` serves and
      what every canonical/sitemap/JSON-LD entry already claims. Leaving this

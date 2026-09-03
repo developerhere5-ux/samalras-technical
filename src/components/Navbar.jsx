@@ -93,9 +93,8 @@ export default function Navbar() {
               onClick={() => setServicesOpen((v) => !v)}
               aria-expanded={servicesOpen}
               aria-controls="services-menu"
-              className={`flex items-center gap-1.5 text-sm font-medium transition hover:text-blue-700 ${
-                onServicePage || servicesOpen ? 'text-blue-700' : 'text-slate-600'
-              }`}
+              className={`flex items-center gap-1.5 text-sm font-medium transition hover:text-blue-700 ${onServicePage || servicesOpen ? 'text-blue-700' : 'text-slate-600'
+                }`}
             >
               Services
               <CaretDownIcon
@@ -120,9 +119,8 @@ export default function Navbar() {
                       <Link
                         href={service.path}
                         aria-current={isActive(service.path) ? 'page' : undefined}
-                        className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition hover:bg-slate-900/5 hover:text-blue-700 ${
-                          isActive(service.path) ? 'text-blue-700' : 'text-slate-700'
-                        }`}
+                        className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition hover:bg-slate-900/5 hover:text-blue-700 ${isActive(service.path) ? 'text-blue-700' : 'text-slate-700'
+                          }`}
                       >
                         {service.card.title}
                         <span className="mt-0.5 block text-xs font-normal text-slate-500">{service.card.tagline}</span>
@@ -139,9 +137,8 @@ export default function Navbar() {
                     <Link
                       href="/services"
                       aria-current={isActive('/services') ? 'page' : undefined}
-                      className={`block rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:bg-slate-900/5 hover:text-blue-700 ${
-                        isActive('/services') ? 'text-blue-700' : 'text-slate-700'
-                      }`}
+                      className={`block rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:bg-slate-900/5 hover:text-blue-700 ${isActive('/services') ? 'text-blue-700' : 'text-slate-700'
+                        }`}
                     >
                       View all services
                     </Link>
@@ -163,9 +160,9 @@ export default function Navbar() {
         <div className="flex items-center justify-end gap-3 lg:flex-1">
           <div className="hidden items-center gap-3 md:flex">
             <a
-              href="tel:+971582731458"
+              href="tel:+971523606843"
               className="btn-press inline-flex items-center gap-2 rounded-full bg-linear-to-br from-blue-900 via-sky-500 to-sky-800 px-4 py-4 text-sm font-bold text-white shadow-lg shadow-blue-700/25 transition hover:bg-blue-800"
-              aria-label="Call +971 58 273 1458"
+              aria-label="Call +97152360 6843"
             >
               <PhoneCallIcon size={18} weight="bold" aria-hidden="true" />
             </a>
@@ -255,7 +252,7 @@ export default function Navbar() {
 
           <div className="mt-3 flex gap-3 border-t border-slate-900/10 pt-4">
             <a
-              href="tel:+971582731458"
+              href="tel:+971523606843"
               className="btn-press flex flex-1 items-center justify-center gap-2 rounded-full bg-linear-to-br from-blue-900 via-sky-500 to-blue-800 px-4 py-3 text-sm font-bold text-white"
             >
               <PhoneCallIcon size={16} weight="bold" aria-hidden="true" /> Call Now

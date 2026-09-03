@@ -246,6 +246,7 @@ Options -MultiViews -Indexes
   RewriteCond %{REQUEST_URI}      !^/$
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteCond %{REQUEST_FILENAME}.html !-f
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html !-f
   RewriteRule ^ - [R=404,L]
 
   # =========================================================================
@@ -253,7 +254,14 @@ Options -MultiViews -Indexes
   # =========================================================================
   # /about -> /about.html, /services/plumbing-services -> …/plumbing-services.html
   # Anything with no matching .html falls straight through to a genuine 404.
+  # 9a. Try %{REQUEST_FILENAME}.html first (works for flat paths like /about)
   RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ /$1.html [L]
+
+  # 9b. Fallback: %{DOCUMENT_ROOT}/%{REQUEST_URI}.html (works for nested paths
+  #      like /services/painting-services where REQUEST_FILENAME resolves to the
+  #      directory rather than the bare path on Hostinger/LiteSpeed)
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
   RewriteRule ^(.*)$ /$1.html [L]
 </IfModule>
 

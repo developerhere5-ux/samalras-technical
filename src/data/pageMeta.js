@@ -3,7 +3,7 @@ import { SERVICES_LIST, SERVICES_BY_PATH } from './services'
 import { HOME } from './home'
 
 const OG_IMAGE = `${SITE_URL}/og-cover.jpg`
-const TELEPHONE = '+971582731458'
+const TELEPHONE = '+971523606843'
 
 const ADDRESS = {
   '@type': 'PostalAddress',
@@ -247,7 +247,7 @@ const PAGES = {
   '/contact': {
     title: 'Contact Us | Sama Alras Technical Services in Dubai',
     description:
-      'Contact Sama Alras Technical Services for a free quote on painting, flooring, AC duct cleaning or electrical work in Dubai. Call +971 58 273 1458, WhatsApp or send the quick form, 7 days a week.',
+      'Contact Sama Alras Technical Services for a free quote on painting, flooring, AC duct cleaning or electrical work in Dubai. Call +97152360 6843, WhatsApp or send the quick form, 7 days a week.',
     keywords:
       'contact sama alras, free quote dubai, painter flooring electrician dubai contact, ac duct cleaning quote dubai',
     crumb: 'Contact',

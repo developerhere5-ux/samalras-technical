@@ -25,8 +25,8 @@ export default function Footer() {
               by one trusted team and backed by a written warranty.
             </p>
             <div className="mt-5 flex flex-wrap justify-center gap-3 sm:justify-start">
-              <a href="tel:+971582731458" className="glass-chip inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-blue-700">
-                <PhoneCallIcon size={16} weight="bold" aria-hidden="true" /> +971 58 273 1458
+              <a href="tel:+971523606843" className="glass-chip inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-blue-700">
+                <PhoneCallIcon size={16} weight="bold" aria-hidden="true" /> +97152360 6843
               </a>
               <a
                 href={WA_HREF}
@@ -93,7 +93,7 @@ export default function Footer() {
                 <Link href="/terms" className="transition hover:text-blue-700">Terms and conditions</Link>
               </li>
               <li>
-                <a href="tel:+971582731458" className="transition hover:text-blue-700">+971 58 273 1458</a>
+                <a href="tel:+971523606843" className="transition hover:text-blue-700">+97152360 6843</a>
               </li>
             </ul>
           </div>

@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import FloatingWhatsApp from '../components/FloatingWhatsApp'
 
-const GTM_ID = 'GTM-WQ6BC4J6'
+const GTM_ID = 'GTM-WQDCRSF7'
 
 
 const displayFont = Plus_Jakarta_Sans({
@@ -61,38 +61,27 @@ function Backdrop() {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${displayFont.variable} ${outfit.variable}`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','${GTM_ID}');`,
+          }}
+        />
+      </head>
       <body>
-        {/* dataLayer + campaign capture + CTA listener + GTM, as one raw inline
-            script and deliberately the first thing in the document body.
-
-            It is NOT a <Script> tag: under `output: 'export'` there is no
-            server render at request time, so next/script leaves nothing
-            executable in the exported HTML — the snippet ends up as escaped
-            string data inside the RSC flight payload and only runs once React
-            has downloaded, hydrated and mounted it. Every call/WhatsApp tap
-            before that fired no container at all, which cost us the Google Ads
-            conversion linker and therefore the gclid → _gcl_aw cookie.
-            dangerouslySetInnerHTML is the same idiom JsonLd.jsx uses, and for
-            the same reason: it has to be in the HTML, not injected later.
-
-            App Router owns <head> via the Metadata API, and React does not
-            hoist inline scripts, so top-of-<body> is both the earliest place
-            this can legally sit and where it renders verbatim. See
-            src/lib/tracking.js for the full event schema. */}
-        <script dangerouslySetInnerHTML={{ __html: trackingBootstrapScript(GTM_ID) }} />
-
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}
-          />
+          ></iframe>
         </noscript>
 
-        <Backdrop />
         <Navbar />
+        <Backdrop />
         <main>{children}</main>
+
         <Footer />
         <FloatingWhatsApp />
       </body>

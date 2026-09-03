@@ -10,16 +10,16 @@ import { WA_HREF } from '../data/site'
    report themselves without any prop being threaded through. */
 
 export function CallButton({ label = 'Call Now', className = '', showNumber = false, iconOnly = false }) {
-  const accessibleLabel = showNumber ? 'Call +971 58 273 1458' : label
+  const accessibleLabel = showNumber ? 'Call +971523606843' : label
   return (
     <a
-      href="tel:+971582731458"
+      href="tel:+971523606843"
       aria-label={iconOnly ? accessibleLabel : undefined}
       title={iconOnly ? accessibleLabel : undefined}
       className={`btn-press inline-flex items-center justify-center  gap-2 rounded-full bg-linear-to-br from-blue-900 via-sky-500 to-sky-800 font-semibold text-white shadow-lg shadow-blue-700/25 transition hover:bg-blue-800 ${iconOnly ? 'p-4' : 'px-5 py-3 text-sm'} ${className}`}
     >
       <PhoneCallIcon size={iconOnly ? 22 : 20} weight="bold" aria-hidden="true" />
-      {!iconOnly && (showNumber ? '+971 58 273 1458' : label)}
+      {!iconOnly && (showNumber ? '+97152360 6843' : label)}
     </a>
   )
 }

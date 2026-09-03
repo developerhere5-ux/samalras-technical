@@ -12,14 +12,14 @@ export default function FloatingWhatsApp() {
       className="fixed right-5 bottom-5 z-50 flex flex-col gap-4"
     >
       <a
-        href="tel:+971582731458"
+        href="tel:+971523606843"
         className="bg-linear-to-br from-blue-900 via-sky-500 to-blue-800  btn-press grid h-14 w-14 place-items-center rounded-full text-white transition sm:h-16 sm:w-16"
         aria-label="Call us for a free quote or booking"
       >
         <PhoneCallIcon size={24} weight="fill" aria-hidden="true" className="animate-icon-bounce sm:h-7 sm:w-7" />
       </a>
       <a
-        href="https://wa.me/971582731458"
+        href="https://wa.me/971523606843"
         target="_blank"
         rel="noopener noreferrer"
         className="bg-linear-to-br from-green-900 via-green-500 to-green-800 btn-press grid h-14 w-14 place-items-center rounded-full text-white transition sm:h-14 sm:w-14"
