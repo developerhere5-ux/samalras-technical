@@ -1,7 +1,7 @@
 import { Outfit, Plus_Jakarta_Sans } from 'next/font/google'
 import '../index.css'
 import { SITE_URL, BUSINESS_NAME } from '../data/site'
-import { trackingBootstrapScript } from '../lib/tracking'
+// import { trackingBootstrapScript } from '../lib/tracking'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import FloatingWhatsApp from '../components/FloatingWhatsApp'
@@ -21,12 +21,9 @@ const outfit = Outfit({
   variable: '--font-outfit',
 })
 
-/* Site-wide head. Anything that differs per page lives in the route's own
-   `generateMetadata` (via buildMetadata in src/data/pageMeta.js) — keep this
-   block to tags that are byte-identical on all nine pages. */
 export const metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'Painting, Flooring, AC Duct Cleaning & Electrician & Plumber In Dubai | Sama Alras',
+  title: 'Painting, Flooring, AC Duct Cleaning & Electrician & Plumber, Cleaning Services, & Carpenter In Dubai | Sama Alras',
   description:
     'Painting, SPC flooring, AC duct cleaning and licensed electricians Plumbers in Dubai from one trusted team. Free site visit, fixed written quote and a warranty on every job.',
   authors: [{ name: BUSINESS_NAME }],
@@ -51,7 +48,7 @@ export const viewport = {
 function Backdrop() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      <div className="absolute -top-32 -left-32 h-[36rem] w-[36rem] rounded-full bg-[#0084ffda] blur-[250px]" />
+      <div className="absolute -top-32 -left-32 h-144 w-[36rem] rounded-full bg-[#0084ffda] blur-[250px]" />
       <div className="absolute top-1/4 -right-40 h-[42rem] w-[40rem] rounded-full bg-sky-500/50 backdrop-blur-sm shadow-lg shadow-sky-900 blur-[420px] " />
       <div className="absolute top-2/3 right-1/4 h-[26rem] w-[26rem] rounded-full bg-blue-600  blur-[150px] drop-shadow-xl" />
     </div>
@@ -81,7 +78,6 @@ export default function RootLayout({ children }) {
         <Navbar />
         <Backdrop />
         <main>{children}</main>
-
         <Footer />
         <FloatingWhatsApp />
       </body>

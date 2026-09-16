@@ -8,7 +8,7 @@ function ServiceCard({ service, tall = false }) {
       <img
         src={service.image}
         alt={service.alt}
-        className={`${tall ? 'aspect-[4/3]' : 'aspect-[16/9]'} w-full object-cover`}
+        className={`${tall ? 'aspect-4/3' : 'aspect-video'} w-full object-cover`}
         width="1200"
         height={tall ? '900' : '675'}
         loading="lazy"

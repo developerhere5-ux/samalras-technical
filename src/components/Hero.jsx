@@ -14,18 +14,10 @@ export default function Hero({ data = PAINTING.hero, tallImage = false, path = '
         <div className="grid items-center gap-12 lg:grid-cols-[1.12fr_0.88fr]">
           <div className="text-center lg:text-left">
             <Breadcrumbs path={path} />
-            {/* The highlight line lives INSIDE the h1 on purpose. It renders as a
-                block so it still looks like a second line, but the h1 text now
-                reads as one complete phrase ("Plumbing Service in Dubai – Fast
-                Same-Day Service") instead of stopping before the location. */}
+           
             <h1 className="font-display text-4xl leading-[1.12] font-extrabold tracking-tight text sm:text-4xl lg:text-[2.65rem] text-shadow-2xs text-shadow-white">
               {data.h1Pre}
-              {/* The explicit space matters: the span below is display:block, so it
-                  looks like a new line, but textContent — which is what a crawler
-                  reads — would otherwise run the two halves together as
-                  "Plumbing Service in Dubai– Fast Same-Day Service". */}
-              {/* Both halves are optional: the homepage runs a single short H1
-                  with no highlight line, service pages use the two-part form. */}
+            
               {data.h1Highlight ? (
                 <>
                   {' '}
@@ -81,7 +73,7 @@ export default function Hero({ data = PAINTING.hero, tallImage = false, path = '
               <img
                 src={data.image}
                 alt={data.imageAlt}
-                className={`${tallImage ? 'aspect-[3/2]' : 'aspect-video'} w-full object-cover`}
+                className={`${tallImage ? 'aspect-3/2' : 'aspect-video'} w-full object-cover`}
                 width="1200"
                 height={tallImage ? '800' : '675'}
                 fetchPriority="high"

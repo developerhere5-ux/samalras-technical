@@ -105,7 +105,7 @@ const businessLd = {
   name: BUSINESS_NAME,
   legalName: BUSINESS_NAME,
   description:
-    'Sama Alras Technical Services is a licensed Dubai company providing professional painting, licensed plumbing, SPC and other flooring, AC duct cleaning, and licensed electrical services across every community in Dubai.',
+    'Sama Alras Technical Services is a licensed Dubai company providing professional painting, licensed plumbing, SPC and other flooring, AC duct cleaning, cleaning services, carpentry services, and licensed electrical work across every community in Dubai.',
   url: `${SITE_URL}/`,
   telephone: TELEPHONE,
   image: OG_IMAGE,
@@ -187,7 +187,7 @@ function servicesCollectionLd(path) {
     '@id': `${url}#collection`,
     name: 'Technical Services in Dubai',
     description:
-      'Every service provided by Sama Alras Technical Services in Dubai: painting, plumbing, SPC and other flooring, licensed electrical work and AC duct cleaning.',
+      'Every service provided by Sama Alras Technical Services in Dubai: painting, plumbing, SPC and other flooring, licensed electrical work, AC duct cleaning, cleaning services and carpentry services.',
     isPartOf: { '@id': `${url}#webpage` },
     about: { '@id': `${SITE_URL}/#business` },
     inLanguage: 'en',
@@ -215,21 +215,21 @@ const PAGES = {
     title: 'Best Home Services Providers Near You In Dubai',
     // Service names only, as requested.
     description:
-      'Painting Services, Plumbing Services, SPC Flooring, Electrician Services and AC Duct Cleaning in Dubai.',
+      'Painting Services, Plumbing Services, SPC Flooring, Electrician Services, AC Duct Cleaning, Cleaning Services and Carpenter Services in Dubai.',
     keywords:
-      'technical services dubai, painting services dubai, house painting dubai, villa painting dubai, apartment painting dubai, plumbing services dubai, plumber in dubai, emergency plumber dubai, water heater repair dubai, spc flooring dubai, vinyl flooring dubai, laminate flooring dubai, ac duct cleaning dubai, ac duct cleaning services dubai, duct sanitisation dubai, electrician dubai, emergency electrician dubai, electrical wiring dubai, home maintenance dubai',
+      'technical services dubai, painting services dubai, house painting dubai, villa painting dubai, apartment painting dubai, plumbing services dubai, plumber in dubai, emergency plumber dubai, water heater repair dubai, spc flooring dubai, vinyl flooring dubai, laminate flooring dubai, ac duct cleaning dubai, ac duct cleaning services dubai, duct sanitisation dubai, electrician dubai, emergency electrician dubai, electrical wiring dubai, cleaning services dubai, office cleaning dubai, villa cleaning dubai, carpenter services dubai, carpenter in dubai, home maintenance dubai',
     crumb: 'Home',
     priority: 1.0,
     changeFrequency: 'weekly',
   },
-  /* The hub for the five service pages. Without a route of its own, /services is
+  /* The hub for the seven service pages. Without a route of its own, /services is
      only a directory in the export and Apache answers it with a 403. */
   '/services': {
     title: 'Our Services | Home Maintenance & Technical Services in Dubai',
     description:
-      'Browse all five technical services from Sama Alras: painting, plumbing, SPC flooring, licensed electrical work and AC duct cleaning across every community in Dubai. Free site visit, fixed written quote and a workmanship warranty on every job.',
+      'Browse all seven technical services from Sama Alras: painting, plumbing, SPC flooring, licensed electrical work, AC duct cleaning, cleaning services and carpentry services across every community in Dubai. Free site visit, fixed written quote and a workmanship warranty on every job.',
     keywords:
-      'technical services dubai, home maintenance services dubai, home maintenance company dubai, technical services company dubai, property maintenance dubai, painting services dubai, plumbing services dubai, spc flooring dubai, electrician dubai, ac duct cleaning dubai, all home services dubai',
+      'technical services dubai, home maintenance services dubai, home maintenance company dubai, technical services company dubai, property maintenance dubai, painting services dubai, plumbing services dubai, spc flooring dubai, electrician dubai, ac duct cleaning dubai, cleaning services dubai, carpenter services dubai, all home services dubai',
     crumb: 'Services',
     priority: 0.9,
     changeFrequency: 'weekly',

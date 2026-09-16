@@ -3,7 +3,7 @@ import { PAINTING } from '../data/services'
 
 function ReviewCard({ review }) {
   return (
-    <figure className="liquid-glass liquid-glass-clear mx-3 flex w-[19rem] shrink-0 flex-col rounded-2xl p-6 sm:w-[22rem] sm:p-7">
+    <figure className="liquid-glass liquid-glass-clear mx-3 flex w-76 shrink-0 flex-col rounded-2xl p-6 sm:w-[22rem] sm:p-7">
       <div className="flex justify-center gap-0.5 text-amber-500 sm:justify-start" role="img" aria-label="5 out of 5 stars">
         {Array.from({ length: 5 }).map((_, i) => (
           <StarIcon key={i} size={16} weight="fill" />

@@ -9,7 +9,7 @@ function HubCard({ service }) {
       <img
         src={card.image}
         alt={card.alt}
-        className="aspect-[16/9] w-full object-cover"
+        className="aspect-video w-full object-cover"
         width="1200"
         height="675"
         loading="lazy"

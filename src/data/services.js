@@ -170,7 +170,7 @@ const PAINTING = {
       { q: 'How long does it take to paint an apartment or villa in Dubai?', a: 'A one to two bedroom apartment normally takes one to two days, a three bedroom apartment two to three days, and a full villa three to seven days depending on size, ceiling height and the condition of the existing surfaces. Walls that need crack filling, damp treatment or a colour change from dark to light need an extra coat and add roughly a day. Occupied homes take slightly longer than empty ones because we work room by room and re-protect furniture each morning. Move-out repaints are the fastest job we do and can often be finished the same day you call. We confirm the exact schedule in writing after the free site visit, so you know the finish date before any work starts.' },
       { q: "Do you use paints suitable for Dubai's climate?", a: "Yes, and the choice matters more here than almost anywhere. For exteriors we use heat-reflective, UV-resistant weatherproof systems from Jotun, National Paints and Caparol, which are formulated to hold their colour through 45°C summers, coastal humidity and blown sand rather than chalking and fading within a season. Exterior walls get crack filling and a bonding primer before topcoats, because in Dubai's heat most exterior paint failures start at the substrate, not the paint. Interiors get low-VOC, washable emulsions that are safe for families and pets and can be wiped clean, which matters in high-traffic hallways and children's rooms. We confirm the exact product and finish with you at the free colour consultation before ordering." },
       { q: 'Are your painters insured and do you offer a warranty?', a: 'Yes to both. Every painter on our team is trained, background-checked, uniformed and covered by full liability insurance, so you are protected if anything is damaged while we work in your home or office. Sama Alras Technical Services holds Dubai trade licence 923026. Every project is covered by a written workmanship warranty that is printed on your quotation rather than promised verbally, running up to five years on exterior painting and waterproofing and covering defects such as peeling, blistering and flaking caused by our workmanship. If something does go wrong inside the warranty period, we return and put it right at no charge. We also walk the finished job with you before handover so any touch-ups are done while the crew is still on site.' },
-      { q: 'Can you paint my office outside working hours?', a: 'Yes. After-hours and weekend commercial painting is one of our most requested services in Dubai, and we schedule it as standard rather than as a special request. We work evenings, overnight and across weekends so your staff arrive to finished walls and zero disruption, which is why the service suits offices, retail units, clinics and warehouses where daytime closure is not an option. For occupied workplaces we use low-odour, low-VOC emulsions so rooms are usable immediately rather than needing to air out. We protect desks, IT equipment and flooring before starting and clear everything before your team returns. Larger fit-outs can be phased floor by floor so only one area is out of use at a time.' },
+      { q: 'Can you paint my office outside working hours?', a: 'Yes. After-hours and weekend commercial painting is one of our most requested services in Dubai, and we schedule it as standard rather than as a special request. We work evenings, overnight and across weekends so your staff arrive to finished walls and zero disruption, which is why the service suits offices, retail units, clinics and warehouses where daytime closure is not an option. For occupied workplaces we use low-odour, low-VOC emulsions so rooms are usable immediately rather than needing to air out. We protect desks, IT equipment and flooring before starting and clear everything before your team returns. Larger projects can be phased floor by floor so only one area is out of use at a time.' },
       { q: 'Do you provide move-out painting for rental apartments in Dubai?', a: 'Yes, and it is one of the most common jobs we handle. Our move-out painting service restores rental apartments and villas to landlord-approved handover condition so your property passes its final inspection and you recover your security deposit. We repair nail holes, wall anchors, scuffs, hairline cracks and any damp patches, then repaint in a standard landlord-approved white or the original scheme, matching the finish the handover requires. Because tenancy handovers rarely leave much notice, same-day and next-day slots are available across every Dubai community we serve. Send us photos on WhatsApp and we can usually quote a fixed price without a site visit, then complete a standard apartment in a single day.' },
       { q: 'Do I need to move out while you paint my villa or apartment?', a: 'Almost never. For interior painting in an occupied home we work room by room so you always have somewhere to sleep, cook and work, and most families stay in the property throughout. Before a brush is opened we move furniture to the centre of the room and sheet it, mask skirting, sockets, switches, door frames and floors, and seal off the work area so dust does not travel through the apartment. The low-VOC washable emulsions we use for interiors have very little odour, so a room is normally usable again the same evening rather than needing days to air out. Exterior and full-villa repaints are different only in scale, and if you would rather be out of the way during a whole-property job we will compress the schedule and work extended days to shorten it.' },
       { q: 'What surface preparation is included before painting?', a: 'All of it, because preparation is where a paint job is actually won or lost in Dubai. Every quotation includes washing down and degreasing the surface, scraping back any flaking or blistering paint, filling nail holes and hairline cracks, raking out and repairing wider cracks properly rather than skimming over them, sanding to a smooth finish and applying the correct primer for the substrate. Bare plaster, previously glossed woodwork, damp-affected walls and exterior render each need a different primer, and using the wrong one is the most common reason a repaint peels within a year in this climate. Where cracks or peeling are caused by water ingress we identify and fix the source first through our waterproofing and wall repair service, because painting over an active damp problem simply hides it until the next summer.' },
@@ -308,13 +308,13 @@ const SPC = {
       {
         id: 'carpet-flooring',
         image: '/images/services/spc/carpet_flooring_worker_dubai_house.webp',
-        alt: 'Carpet tiles being laid in a Dubai office fit-out',
+        alt: 'Carpet tiles being laid in a Dubai office by professional installers',
         waHref: wa('Hi! I would like a free quote for carpet or carpet tiles in Dubai.'),
         title: 'Carpet & Carpet Tiles',
         tagline: 'Comfort for homes and offices',
         description:
           'Soft broadloom carpet and modular carpet tiles for bedrooms, majlis rooms, offices and meeting spaces. We supply and fit acoustic-friendly carpet that reduces noise and adds comfort, with hard-wearing commercial ranges for busy Dubai workplaces.',
-        features: ['Broadloom carpet and carpet tiles', 'Residential and commercial ranges', 'Noise-reducing and comfortable', 'Fast, tidy office fit-outs'],
+        features: ['Broadloom carpet and carpet tiles', 'Residential and commercial ranges', 'Noise-reducing and comfortable', 'Fast, tidy office installations'],
       },
     ],
   },
@@ -759,6 +759,385 @@ const AC_DUCT = {
   },
 }
 
+const CLEANING = {
+  slug: 'cleaning-services-dubai',
+  path: '/services/cleaning-services-dubai',
+  navLabel: 'Cleaning',
+  schemaType: 'CleaningService',
+  serviceName: 'Cleaning Services in Dubai',
+  overview: {
+    heading: 'Professional Cleaning Services in Dubai',
+    paragraphs: [
+      'Sama Alras Technical Services delivers reliable cleaning services in Dubai for villas, apartments, offices, retail spaces and commercial premises. From regular home maintenance to deep cleaning and move-out refreshes, our teams arrive with the right tools, trained staff and a clear quality checklist so every job is left spotless and presentation-ready.',
+      'Our cleaning service covers Villa cleaning, apartment cleaning, office cleaning, showroom cleaning, kitchen and bathroom sanitising, after-painting dust removal and move-in or move-out cleaning for tenants and landlords. We protect your space, follow a structured cleaning sequence and do a final quality check before handover so you get a consistent finish every time.',
+      'Looking for a cleaning company near you in Dubai? We cover every major community, including Dubai Marina, Business Bay, JVC, JLT, Jumeirah, Palm Jumeirah, Arabian Ranches, Dubai Hills Estate and Mirdif, with same-day and next-day slots available across the city. We also work alongside our painting, flooring, electrical and plumbing teams when a property needs a full refresh or renovation clean-up.',
+    ],
+    links: [
+      { label: 'Painting Services', to: '/services/painting-services' },
+      { label: 'SPC & Flooring Services', to: '/services/spc-flooring-services' },
+      { label: 'Electrician Services', to: '/services/electrician-services' },
+      { label: 'Plumbing Services', to: '/services/plumbing-services' },
+      { label: 'All Services', to: '/' },
+    ],
+  },
+  card: {
+    title: 'Cleaning Services',
+    tagline: 'Villa, apartment, office & deep cleaning',
+    description:
+      'Professional cleaning services in Dubai for homes, offices and commercial spaces, including residential cleaning, deep cleaning, move-in and move-out cleaning, and after-painting or renovation dust removal.',
+    image: '/images/services/cleaning/cleaning-team-card.webp',
+    alt: 'Professional cleaner polishing a modern Dubai apartment living room',
+    features: ['Villa, apartment & office cleaning', 'Deep cleaning and sanitising', 'Move-in / move-out cleaning', 'Same-day and next-day availability'],
+  },
+  team: {
+    heading: 'The cleaning team',
+    lead: 'Checklist-driven cleaners who leave no detail missed',
+    text: 'Our cleaning crew works by room, by finish and by standard. They start with high-touch surfaces, kitchens and bathrooms, then move to floors, skirting, glass, vents and high-level dusting, before a final inspection of the whole property. For move-out jobs and renovation cleans they also handle after-paint dust removal, general rubbish clear-out and final presentation so the home or office feels ready for handover.',
+  },
+  meta: {
+    title: 'Cleaning Services in Dubai | Villa, Apartment & Office Cleaning',
+    description:
+      'Cleaning services in Dubai for villas, apartments, offices and commercial spaces. Sama Alras provides deep cleaning, move-in/out cleaning, sanitising, after-painting dust removal and same-day quotes across Dubai. Call or WhatsApp now.',
+    keywords:
+      'cleaning services in dubai, cleaning company dubai, villa cleaning dubai, apartment cleaning dubai, office cleaning dubai, deep cleaning dubai, move out cleaning dubai, move in cleaning dubai, after painting cleaning dubai, cleaning services near me, cleaners in dubai, house cleaning dubai, commercial cleaning dubai, office cleaning dubai marina, cleaners jvc, cleaning services business bay, cleaning services Arabian Ranches',
+  },
+  hero: {
+    h1Pre: 'Cleaning Services in',
+    h1Highlight: 'Dubai',
+    subtitle: 'Professional Cleaning for Homes, Offices and Commercial Spaces',
+    intro:
+      'Trusted cleaning services in Dubai for homes, offices and commercial properties. From deep cleaning to move-in and move-out cleaning, we leave spaces fresh, tidy and presentation-ready.',
+    image: '/images/services/cleaning/cleaning-team.webp',
+    imageAlt: 'Clean and polished modern apartment living room after a professional Dubai cleaning service',
+    panelHeading: 'Why Dubai chooses us',
+    rating: '4.9/5 from 1,200+ reviews',
+    badge: 'Same-day and next-day cleanings available',
+    whatsappText: 'Hi! I would like a free quote for cleaning services in Dubai.',
+  },
+  services: {
+    heading: 'Our Cleaning Services in Dubai',
+    intro:
+      'A full cleaning service for homes and businesses. We bring the equipment, follow a consistent checklist and finish by quality-checking every room before we leave.',
+    items: [
+      {
+        id: 'villa-cleaning',
+        image: '/images/services/cleaning/villa-cleaning.webp',
+        alt: 'Living room in a Dubai villa after a professional house cleaning service',
+        waHref: wa('Hi! I would like a quote for villa cleaning in Dubai.'),
+        title: 'Villa Cleaning Services',
+        tagline: 'Homes and villas cleaned properly',
+        description:
+          'Regular and deep villa cleaning in Dubai for family homes, townhouses and luxury villas. We clean bedrooms, living areas, kitchens, bathrooms, windowsills and common surfaces with a room-by-room checklist and final inspection.',
+        features: ['Villa and townhouse cleaning', 'Kitchen and bathroom sanitising', 'Dusting, mopping and finishing detail', 'Flexible weekly or one-off clean'],
+      },
+      {
+        id: 'apartment-cleaning',
+        image: '/images/services/cleaning/apartment-cleaning.webp',
+        alt: 'Dubai apartment bedroom prepared after a professional apartment cleaning service',
+        waHref: wa('Hi! I need apartment cleaning in Dubai. Can I get a quote?'),
+        title: 'Apartment Cleaning Services',
+        tagline: 'Fresh homes ready to live in',
+        description:
+          'Apartment cleaning in Dubai for residents, landlords and tenants. We clean the full property including living rooms, bedrooms, kitchens, bathrooms and balconies, with careful attention to high-touch areas and finishing details.',
+        features: ['Bedrooms, living rooms and kitchens', 'Balcony and bathroom cleaning', 'Move-in and move-out cleaning', 'Quick, tidy and reliable service'],
+      },
+      {
+        id: 'office-cleaning',
+        image: '/images/services/cleaning/office-commercial-cleaning.webp',
+        alt: 'Clean and bright office interior in Dubai after office cleaning service',
+        waHref: wa('Hi! I would like a quote for office cleaning in Dubai.'),
+        title: 'Office & Commercial Cleaning',
+        tagline: 'Professional spaces that feel cared for',
+        description:
+          'Office cleaning in Dubai for commercial spaces, clinics and retail premises, with dusting, mopping, sanitising, reception cleaning and washroom maintenance. We can schedule work before opening hours or after closing to keep operations running smoothly.',
+        features: ['Offices, clinics and retail spaces', 'Reception and desk dusting', 'Washroom and high-touch sanitising', 'After-hours cleaning schedules'],
+      },
+      {
+        id: 'deep-cleaning',
+        image: '/images/services/cleaning/deep-cleaning.webp',
+        alt: 'Deep cleaned Dubai kitchen and living area after a professional deep cleaning service',
+        waHref: wa('Hi! I need deep cleaning services in Dubai.'),
+        title: 'Deep Cleaning Services',
+        tagline: 'A more thorough reset',
+        description:
+          'Deep cleaning tackles built-up dust, greasy kitchen areas, bathroom grout, behind appliances and overlooked corners that regular cleaning misses. Ideal for seasonal refreshes, rented properties and after a renovation or repaint.',
+        features: ['Kitchen, bathroom and grout cleaning', 'Behind appliances and overlooked corners', 'Ideal before handover or move-in', 'Boosts presentation and hygiene'],
+      },
+      {
+        id: 'move-in-out-cleaning',
+        image: '/images/services/cleaning/move-in-move-out-cleaning.webp',
+        alt: 'Move-out cleaned Dubai apartment with fresh surfaces and tidy rooms',
+        waHref: wa('Hi! I need move in or move out cleaning in Dubai.'),
+        title: 'Move-In / Move-Out Cleaning',
+        tagline: 'Ready for handover or new keys',
+        description:
+          'Move-in and move-out cleaning is designed for tenants, landlords and property managers who need a vacancy-ready finish. We clean the whole property to a high presentation standard so it is ready for handover, new furnishings or a new family.',
+        features: ['Landlord and tenant cleaning', 'Vacancy-ready presentation', 'Quick turnarounds for handover', 'Final walkthrough and quality check'],
+      },
+      {
+        id: 'after-renovation-cleaning',
+        image: '/images/services/cleaning/after-paint-fitout-cleaning.webp',
+        alt: 'After-painting cleaning of a Dubai villa interior with dust removed and surfaces polished',
+        waHref: wa('Hi! I need after-painting or renovation cleaning in Dubai.'),
+        title: 'After Paint & Renovation Cleaning',
+        tagline: 'Clean finish after a project',
+        description:
+          'Renovations and paint jobs leave dust in every room. Our after-paint and renovation cleaning service removes fine particles, polishes surfaces and restores the space so it is ready for furniture, move-in or final handover.',
+        features: ['After-paint dust removal', 'Post-renovation cleaning', 'Polishing and final presentation', 'Ready for handover or occupancy'],
+      },
+    ],
+  },
+  whyUs: {
+    heading: 'Why Dubai Trusts Our Cleaning Team',
+    intro:
+      'A clean space should feel calm, hygienic and ready to use. We combine practical cleaning checks, modern equipment and a strict finish standard to deliver that result every time.',
+    reasons: [
+      { icon: 'sparkle', title: 'Detailed, room-by-room service', text: 'We follow a consistent checklist so no room is missed, especially kitchens, bathrooms and high-touch surfaces.' },
+      { icon: 'shield-check', title: 'Trained, reliable staff', text: 'Our cleaners are trained, background-checked and managed by us so you get a dependable team every visit.' },
+      { icon: 'receipt', title: 'Clear, upfront pricing', text: 'No vague add-ons or surprise charges. We quote clearly for the job, the size and the timing you need.' },
+      { icon: 'clock', title: 'Flexible scheduling', text: 'Need a same-day clean, a one-off deep clean or weekly maintenance? We work around your property and your schedule.' },
+      { icon: 'broom', title: 'Professional finish', text: 'From dusting and mopping to final presentation, we leave spaces fresh, tidy and ready to live or work in.' },
+      { icon: 'users', title: 'One team for every property', text: 'Whether it is a villa, apartment, office or showroom, the same service standard applies across the whole property.' },
+    ],
+  },
+  process: {
+    heading: 'How We Clean Your Property in 4 Steps',
+    steps: [
+      { step: '1', title: 'Free quote and walkthrough', text: 'Tell us the property type, the size and the standard of cleaning you need. We arrange a quote and a simple walkthrough to confirm priorities.' },
+      { step: '2', title: 'Schedule your clean', text: 'We agree the date, time and any specific rooms or finishes that need extra attention, then confirm the plan before the team arrives.' },
+      { step: '3', title: 'Clean and sanitise', text: 'Our team follows a room-by-room process, from kitchens and bathrooms to floors, glass and final dusting, with attention to corners and touchpoints.' },
+      { step: '4', title: 'Final quality check', text: 'We inspect the full property, fix any missed detail and hand over a tidy, fresh and ready-to-use space.' },
+    ],
+  },
+  testimonials: {
+    heading: 'What Dubai Says About Our Cleaning Service',
+    reviews: [
+      { name: 'Nadia F.', area: 'Dubai Marina', service: 'Apartment Cleaning', text: 'Booked a deep clean for our apartment before guests arrived. The team was efficient, professional and the place looked better than new. Highly recommended.' },
+      { name: 'Ali S.', area: 'Arabian Ranches', service: 'Villa Cleaning', text: 'Their villa cleaning team was on time, extremely thorough and the finish was excellent. We now book them every two weeks.' },
+      { name: 'Sara M.', area: 'Business Bay', service: 'Office Cleaning', text: 'Great office cleaning service for our showroom. They worked after hours, left everything spotless and the team was very polite.' },
+      { name: 'Omar H.', area: 'JVC', service: 'Move-Out Cleaning', text: 'We needed a fast move-out clean before handover and they did it quickly and professionally. Saved us a lot of stress.' },
+    ],
+  },
+  areas: {
+    heading: 'Cleaning Services Near You, All Dubai Areas Covered',
+    intro: 'Our cleaning teams cover villas, apartments, offices and commercial spaces across every major Dubai community.',
+  },
+  faq: {
+    heading: 'Cleaning Services in Dubai, Answered',
+    intro: 'Regular cleaning, deep cleaning and service schedules. If your question is not here, WhatsApp us and a real person replies within minutes.',
+    items: [
+      { q: 'How often should I book cleaning services in Dubai?', a: 'It depends on your household or business. Weekly or fortnightly cleaning works well for busy homes and offices, while deep cleaning is better every few months or before a move-in, handover or event. We also offer one-off cleaning for tenants, landlords and property managers who need a quick refresh.' },
+      { q: 'Do you offer deep cleaning and move-out cleaning?', a: 'Yes. We provide deep cleaning for kitchens, bathrooms, walls, window sills, corners and appliances, plus move-in and move-out cleaning for landlords, tenants and property managers who need a presentation-ready finish.' },
+      { q: 'Can you clean offices and commercial spaces after hours?', a: 'Yes. We can schedule office and commercial cleaning before opening hours, after hours or on weekends so your business keeps running without disruption.' },
+      { q: 'Are your cleaners trained and reliable?', a: 'Yes. Our teams are trained, managed and quality-checked by us, so the same standard is delivered every visit rather than depending on a different person each time.' },
+      { q: 'Do you handle after-paint and renovation cleaning?', a: 'Yes. After a paint job, carpentry project or renovation, we remove fine dust from surfaces, skirting, glass and fixtures so the property is ready for handover or occupancy.' },
+      { q: 'Do you cover all areas of Dubai?', a: 'Yes. We serve every major community in Dubai including Dubai Marina, Business Bay, JVC, JLT, Jumeirah, Palm Jumeirah, Arabian Ranches, Dubai Hills Estate and Mirdif, with same-day or next-day scheduling where available.' },
+    ],
+  },
+  finalCta: {
+    heading: 'Book a professional cleaning service today',
+    text: 'Free quote, flexible scheduling and a tidy final finish. We clean homes, apartments, offices and commercial spaces across Dubai.',
+    whatsappLabel: 'WhatsApp Us',
+    whatsappText: 'Hi! I would like a quote for cleaning services in Dubai.',
+  },
+  contact: {
+    heading: 'Request a cleaning quote',
+    intro: 'Tell us the property type, area and what you need cleaned, and we reply with a clear quote and the earliest available slot.',
+    messageLabel: 'What do you need cleaned?',
+    messagePlaceholder: 'e.g. 3-bedroom villa in Arabian Ranches, deep clean plus kitchen and bathroom sanitising',
+  },
+}
+
+const CARPENTER = {
+  slug: 'carpenter-services-dubai',
+  path: '/services/carpenter-services-dubai',
+  navLabel: 'Carpenter',
+  schemaType: 'HomeAndConstructionBusiness',
+  serviceName: 'Carpenter Services in Dubai',
+  overview: {
+    heading: 'Professional Carpenter Services in Dubai',
+    paragraphs: [
+      'Carpentry in Dubai covers far more than a shelf on a wall. From custom kitchen cabinets and built-in wardrobes to villa-wide joinery, door hanging, office partitions and furniture repair, skilled woodwork is at the heart of every well-finished home and business in the city. Sama Alras Technical Services provides professional carpenter services in Dubai with experienced, full-time carpenters who measure, build and install on site, so you deal with one accountable team from first sketch to final handover.',
+      'Whether you need a carpenter near you for a single broken cabinet hinge, a full kitchen remodel with soft-close drawers, fitted wardrobes that use every centimetre of an awkward alcove, or complete office joinery with reception counters and storage walls, our carpenters work with solid wood, MDF, plywood, melamine and laminate to deliver durable, precision-fitted results that suit Dubai interiors and budgets.',
+      'Looking for a carpenter near you? Our carpentry teams cover every community in Dubai, including Dubai Marina, Downtown Dubai, Business Bay, Jumeirah, Palm Jumeirah, Arabian Ranches, Dubai Hills Estate, JVC, JLT, The Springs, Mirdif and Al Barsha, with free on-site measurement and a fixed written quote before any work starts. We also offer painting, SPC flooring, licensed electrical work and plumbing, so your entire home or office upgrade can be handled by one trusted company.',
+    ],
+    links: [
+      { label: 'Painting Services', to: '/services/painting-services' },
+      { label: 'SPC & Flooring Services', to: '/services/spc-flooring-services' },
+      { label: 'Electrician Services', to: '/services/electrician-services' },
+      { label: 'Plumbing Services', to: '/services/plumbing-services' },
+      { label: 'All Services', to: '/' },
+    ],
+  },
+  card: {
+    title: 'Carpenter Services',
+    tagline: 'Kitchens, wardrobes, doors & custom joinery',
+    description:
+      'Professional carpenter services in Dubai for custom kitchens, built-in wardrobes, door installation, villa joinery, office woodwork and furniture repair. Free on-site measurement, precision fitting and a written warranty on every job.',
+    image: '/images/services/carpenter/carpenter_services_dubai.webp',
+    alt: 'Professional carpenter in Dubai installing custom kitchen cabinetry',
+    features: ['Custom kitchens & wardrobes', 'Door installation & repair', 'Office & commercial joinery', 'Free on-site measurement'],
+  },
+  team: {
+    heading: 'The carpentry team',
+    lead: 'Measure-twice carpenters who build to last in Dubai conditions',
+    text: 'Our carpenters in Dubai are full-time, experienced woodworkers who understand how heat, humidity and air conditioning cycling affect timber, MDF and laminate in this climate. They measure precisely, cut cleanly and install with concealed fixings, soft-close hardware and proper edge banding so every piece of joinery looks and functions like factory-made furniture. The same team handles kitchen cabinets, wardrobes, doors, skirting, wall panelling, office partitions and furniture repair, so nobody is learning a new skill on your project.',
+  },
+  meta: {
+    title: 'Carpenter in Dubai | Kitchen, Wardrobe, Door & Joinery Services',
+    description:
+      'Professional carpenter services in Dubai for custom kitchens, built-in wardrobes, door installation, villa joinery, office partitions and furniture repair. Experienced carpenters with free on-site measurement and a written warranty. Call or WhatsApp now.',
+    keywords:
+      'carpenter dubai, carpenter in dubai, carpenter near me, carpentry services dubai, carpenter services dubai, kitchen carpenter dubai, kitchen cabinets dubai, wardrobe carpenter dubai, built in wardrobe dubai, door installation dubai, door repair dubai, joinery dubai, custom joinery dubai, office carpenter dubai, furniture repair dubai, carpenter dubai marina, carpenter jvc, carpenter arabian ranches, carpenter business bay, wood work dubai, carpentry company dubai, best carpenter dubai',
+  },
+  hero: {
+    h1Pre: 'Carpenter Services in',
+    h1Highlight: 'Dubai',
+    subtitle: 'Expert Carpenters for Kitchens, Wardrobes, Doors & Custom Joinery',
+    intro:
+      'Professional carpentry services in Dubai for custom kitchens, built-in wardrobes, door installation, villa joinery, office woodwork and furniture repair. Free on-site measurement, precision craftsmanship and a written warranty on every job.',
+    image: '/images/services/carpenter/carpenter_services_dubai.webp',
+    imageAlt: 'Experienced Sama Alras carpenter fitting custom kitchen cabinets in a Dubai villa',
+    panelHeading: 'Why Dubai chooses us',
+    rating: '4.9/5 from 1,200+ reviews',
+    badge: 'Carpenters available today for free on-site measurement',
+    whatsappText: 'Hi! I would like a free quote for carpenter services in Dubai.',
+  },
+  services: {
+    heading: 'Our Carpenter Services in Dubai',
+    intro:
+      'From a single door repair to a full villa joinery package, our carpenters deliver precision woodwork built for Dubai homes and businesses. Every job includes free measurement, quality materials and a clean, professional handover.',
+    items: [
+      {
+        id: 'kitchen-carpentry',
+        image: '/images/services/carpenter/01_kitchen_carpentry_cabinets.webp',
+        alt: 'Custom kitchen cabinets being installed by a carpenter in a Dubai apartment',
+        waHref: wa('Hi! I need kitchen carpentry or cabinet work in Dubai.'),
+        title: 'Kitchen Carpentry & Cabinets',
+        tagline: 'Custom kitchens built to your layout',
+        description:
+          'Kitchen carpentry in Dubai is one of our most requested services. We design, build and install custom kitchen cabinets, islands, pantry units and countertop supports in solid wood, MDF or laminate, with soft-close hinges, drawer runners and integrated handles. Whether you are renovating a compact apartment kitchen in JVC or building a full chef-grade kitchen in an Arabian Ranches villa, our carpenters measure the space precisely, work around plumbing and electrical points, and deliver a kitchen that maximises storage and looks premium.',
+        features: ['Custom cabinet design and build', 'Soft-close hinges and drawer systems', 'Laminate, MDF and solid wood options', 'Built around existing plumbing and electrics'],
+      },
+      {
+        id: 'wardrobe-closet',
+        image: '/images/services/carpenter/02_builtin_wardrobes_closets.webp',
+        alt: 'Built-in wardrobe with sliding doors fitted by a carpenter in a Dubai bedroom',
+        waHref: wa('Hi! I need a built-in wardrobe or closet in Dubai.'),
+        title: 'Built-In Wardrobes & Closets',
+        tagline: 'Floor-to-ceiling storage, custom fitted',
+        description:
+          'Built-in wardrobes are essential in Dubai apartments and villas where every square metre counts. Our carpenters build floor-to-ceiling wardrobes, walk-in closets, sliding-door systems and internal organisers, shelving, hanging rails, shoe racks and drawer dividers, all fitted precisely to your walls so there are no gaps or wasted space. Choose from hinged, sliding or bi-fold doors in matt, gloss, mirror or wood-grain finishes to match your bedroom interior.',
+        features: ['Floor-to-ceiling fitted wardrobes', 'Sliding, hinged and bi-fold doors', 'Internal shelving and organisers', 'Mirror and wood-grain finish options'],
+      },
+      {
+        id: 'door-installation',
+        image: '/images/services/carpenter/03_door_installation_repair.webp',
+        alt: 'Carpenter installing an interior wooden door in a Dubai villa',
+        waHref: wa('Hi! I need door installation or repair in Dubai.'),
+        title: 'Door Installation & Repair',
+        tagline: 'Interior and exterior doors, hung right',
+        description:
+          'Door installation in Dubai covers interior room doors, main entrance doors, bathroom doors, balcony doors, French doors and sliding barn doors. Our carpenters supply and hang new doors or repair, realign and refinish existing ones. We handle WPC, solid wood, HDF, flush and panelled doors with proper frame adjustment, lock fitting and smooth operation, including fire-rated doors for commercial properties.',
+        features: ['Interior and entrance door hanging', 'WPC, solid wood and HDF doors', 'Lock, handle and hinge fitting', 'Door realignment and repair'],
+      },
+      {
+        id: 'villa-carpentry',
+        image: '/images/services/carpenter/04_villa_carpentry_joinery.webp',
+        alt: 'Carpenter crafting custom wall panelling and skirting in a Dubai villa',
+        waHref: wa('Hi! I need villa carpentry and joinery work in Dubai.'),
+        title: 'Villa Carpentry & Joinery',
+        tagline: 'Complete woodwork for luxury homes',
+        description:
+          'Villa carpentry in Dubai demands precision joinery that matches the scale and finish of high-end interiors. We build and install custom wall panelling, decorative mouldings, ceiling cornices, skirting boards, staircase handrails, TV unit surrounds, floating shelves and bespoke storage solutions throughout your villa. From Arabian Ranches to Palm Jumeirah, our carpenters deliver craftsmanship that adds real value and character to every room.',
+        features: ['Wall panelling and mouldings', 'Skirting, cornices and trim work', 'Staircase handrails and balustrades', 'TV units and floating shelves'],
+      },
+      {
+        id: 'office-commercial-carpentry',
+        image: '/images/services/carpenter/05_office_commercial_carpentry.webp',
+        alt: 'Custom office partition and reception desk built by a carpenter in a Dubai office',
+        waHref: wa('Hi! I need office or commercial carpentry in Dubai.'),
+        title: 'Office & Commercial Carpentry',
+        tagline: 'Workspaces built for business',
+        description:
+          'Office carpentry in Dubai covers reception desks, workstation partitions, filing and storage walls, boardroom furniture, display units and retail shelving. We work after hours and on weekends to avoid business disruption, and build to commercial-grade durability with scratch-resistant laminate, metal edge banding and concealed cable management so your workspace looks professional and functions efficiently.',
+        features: ['Reception desks and counters', 'Workstation partitions and storage', 'After-hours and weekend installation', 'Commercial-grade materials and finish'],
+      },
+      {
+        id: 'furniture-repair',
+        image: '/images/services/carpenter/06_furniture_repair_restoration.jpg',
+        alt: 'Carpenter repairing and refinishing a wooden dining table in Dubai',
+        waHref: wa('Hi! I need furniture repair or restoration in Dubai.'),
+        title: 'Furniture Repair & Restoration',
+        tagline: 'Fix it properly, save what matters',
+        description:
+          'Not everything needs replacing. Our carpenters repair broken chairs, wobbly tables, sagging cabinet shelves, damaged drawer runners, chipped edges and loose joints. We also refinish, sand and re-lacquer wooden furniture to restore its original look. For Dubai rentals, we repair landlord furniture and fixtures before move-out inspections so you avoid deduction from your security deposit.',
+        features: ['Structural repair and re-gluing', 'Drawer runner and hinge replacement', 'Sanding, staining and re-lacquering', 'Move-out furniture fix-ups'],
+      },
+    ],
+  },
+  whyUs: {
+    heading: 'Why We Are Rated the Best Carpenter in Dubai',
+    intro:
+      'Good carpentry is invisible: doors close silently, drawers glide, cabinets stay square and shelves hold weight without sagging. That takes experience, proper materials and honest measurement.',
+    reasons: [
+      { icon: 'ruler', title: 'Precision on-site measurement', text: 'We measure every wall, alcove and corner before cutting, so fitted wardrobes, kitchens and joinery sit flush with no gaps or fillers.' },
+      { icon: 'receipt', title: 'Fixed quotes, zero surprises', text: 'The price we quote is the price you pay. Written quotations cover materials, hardware, labour and installation with no mid-project extras.' },
+      { icon: 'medal', title: 'Experienced full-time carpenters', text: 'Every carpenter on our team has 5+ years of hands-on experience in Dubai, is background-checked, uniformed and trained on current hardware and materials.' },
+      { icon: 'shield-check', title: 'Warranty-backed workmanship', text: 'Written workmanship warranty on every job, covering structural integrity, hardware operation and finish quality.' },
+      { icon: 'clock', title: 'On time, minimal disruption', text: 'We work to agreed timelines, protect your floors and furniture, and clean up at the end of every day so your home or office stays liveable.' },
+      { icon: 'sparkle', title: 'Quality materials for Dubai climate', text: 'We use moisture-resistant MDF, marine plywood and climate-stable laminates that will not warp, swell or delaminate in Dubai heat and humidity.' },
+    ],
+  },
+  process: {
+    heading: 'From Measurement to Perfect Finish in 4 Steps',
+    steps: [
+      { step: '1', title: 'Free on-site measurement', text: 'Call or WhatsApp us. We visit, measure every dimension and discuss your requirements, materials and budget, then send a fixed written quote.' },
+      { step: '2', title: 'Material and design confirmation', text: 'Choose your finishes, colours and hardware from real samples. We confirm the design, materials and timeline before ordering anything.' },
+      { step: '3', title: 'Build and installation', text: 'Our carpenters build components in our workshop and install on site with precision fitting, concealed fixings and proper edge banding.' },
+      { step: '4', title: 'Inspection and handover', text: 'We walk the finished work with you, adjust doors, drawers and fittings on the spot, clean up completely and hand over with a written warranty.' },
+    ],
+  },
+  testimonials: {
+    heading: 'What Dubai Says About Our Carpenters',
+    reviews: [
+      { name: 'Nadia S.', area: 'Arabian Ranches', service: 'Kitchen Carpentry', text: 'They rebuilt our entire kitchen with custom cabinets and a pantry unit. Every drawer is soft-close, the finish is flawless and the quote matched the final price exactly. Best carpenter in Dubai.' },
+      { name: 'Khalid R.', area: 'Dubai Marina', service: 'Built-In Wardrobes', text: 'Fitted floor-to-ceiling wardrobes in three bedrooms with sliding mirror doors. The carpenters measured perfectly and there is not a single gap. Highly recommend.' },
+      { name: 'Emma L.', area: 'Business Bay', service: 'Office Carpentry', text: 'Custom reception desk and storage walls for our office, all done over a single weekend. Professional, tidy and the result looks premium.' },
+      { name: 'Tariq A.', area: 'JVC', service: 'Door Installation', text: 'Replaced all interior doors in our 3-bedroom apartment. The carpenter hung them perfectly, fitted new handles and the whole job took one day. Great value.' },
+    ],
+  },
+  areas: {
+    heading: 'Carpenters Near You, All Dubai Areas Covered',
+    intro: 'Our carpentry teams are stationed across the city, so a professional carpenter is never more than 30 minutes away from your home or office.',
+  },
+  faq: {
+    heading: 'Carpenter Services in Dubai, Answered',
+    intro: 'Materials, timelines, custom work and warranties. If your question is not here, WhatsApp us and a real person replies within minutes.',
+    items: [
+      { q: 'What carpentry services do you offer in Dubai?', a: 'We cover the full range of residential and commercial carpentry in Dubai: custom kitchen cabinets and islands, built-in wardrobes and walk-in closets, interior and exterior door installation and repair, villa joinery including wall panelling, skirting, cornices and staircase handrails, office and commercial woodwork including reception desks, partitions and storage walls, floating shelves, TV units, furniture repair and restoration, and general woodwork and fixes. Every job starts with a free on-site measurement and a fixed written quote.' },
+      { q: 'What materials do your carpenters use?', a: 'We work with solid wood, moisture-resistant MDF, marine plywood, melamine-faced chipboard and high-pressure laminate, choosing the right material for each application. In Dubai, moisture resistance matters more than in most cities because air conditioning creates temperature and humidity swings that cause standard MDF and chipboard to swell and delaminate over time. We use moisture-resistant boards as standard for kitchens, bathrooms and any cabinetry near water, and edge-band all exposed surfaces to seal them. Hardware is Blum, Hettich or equivalent soft-close systems throughout unless you specify otherwise.' },
+      { q: 'How long does a kitchen carpentry project take in Dubai?', a: 'A standard apartment kitchen refit with new cabinets, countertop support and hardware typically takes five to eight working days from start of installation, depending on the number of units, complexity of the layout and whether plumbing or electrical work needs to happen alongside. A larger villa kitchen with an island, pantry and appliance housing can take two to three weeks. We confirm the exact timeline in writing after the free on-site measurement. Workshop fabrication happens in parallel with any demolition or preparation, so the on-site phase is as short as possible.' },
+      { q: 'Can you build custom wardrobes for awkward spaces?', a: 'Yes, and this is exactly where a carpenter adds value over flat-pack furniture. We measure sloped ceilings, angled walls, columns and alcoves precisely and build the wardrobe to fit the shape of the room rather than forcing a standard unit into a non-standard space. Internal layouts, shelf spacing, hanging rail heights and drawer depths are configured to suit your actual wardrobe, not a generic template. The result is a fitted wardrobe that uses every centimetre, looks built-in and has no fillers or gaps.' },
+      { q: 'Do you install and repair doors in Dubai?', a: 'Yes. We supply and install new interior and exterior doors, including WPC, solid wood, HDF, flush, panelled and fire-rated doors. We also repair, realign and refinish existing doors that stick, drag, do not latch properly or have damaged frames. Every door installation includes proper frame check, hinge fitting, lock and handle installation, and smooth swing adjustment. For apartment buildings where EJARI-compliant handover condition matters, we can repair or replace doors to landlord-approved standards.' },
+      { q: 'Do your carpenters work in offices and commercial spaces?', a: 'Yes. We build and install reception desks, workstation partitions, filing and storage walls, boardroom tables, display units, retail shelving and café counters. Commercial carpentry is scheduled after hours, overnight or on weekends so your business continues without interruption. Materials are commercial-grade with scratch-resistant laminate, metal edge banding and concealed cable management as standard.' },
+      { q: 'Do you cover all areas in Dubai?', a: 'Yes. Our carpenters serve every community in Dubai, including Dubai Marina, Downtown Dubai, Business Bay, Jumeirah, Palm Jumeirah, Arabian Ranches, Dubai Hills Estate, JVC, JLT, The Springs, Mirdif, Al Barsha, Motor City, Damac Hills, Silicon Oasis and Emirates Hills. The free on-site measurement is genuinely free with no obligation. Call or WhatsApp us with your location and we arrange a visit, usually the same day.' },
+    ],
+  },
+  finalCta: {
+    heading: 'Get your free carpentry quote today',
+    text: 'Free on-site measurement, fixed written quote and expert installation backed by a written warranty. Open 7 days a week, 8am-10pm.',
+    whatsappLabel: 'WhatsApp Us',
+    whatsappText: 'Hi! I would like a free quote for carpenter services in Dubai.',
+  },
+  contact: {
+    heading: 'Request a free carpentry quote',
+    intro: 'Tell us what you need built, repaired or installed and we reply within minutes with a fixed price and the earliest available slot.',
+    messageLabel: 'What carpentry work do you need?',
+    messagePlaceholder: 'e.g. custom kitchen cabinets for 2-bedroom apartment in JVC, or built-in wardrobes in 3 bedrooms',
+  },
+}
+
 const PLUMBING = {
   slug: 'plumbing-services',
   path: '/services/plumbing-services',
@@ -881,7 +1260,7 @@ const PLUMBING = {
         alt: 'Plumber fitting a chrome mixer tap to a basin in a luxury Dubai bathroom, wrenches and fittings laid out on a work mat',
         waHref: wa('Hi! I need bathroom or sanitary ware installation in Dubai.'),
         title: 'Bathroom, Toilet & Sanitary Ware Installation',
-        tagline: 'Full fit-outs and swap-outs',
+        tagline: 'Full installations and swap-outs',
         description:
           'Running toilets, dripping mixers and tired bathrooms. We repair or replace toilets, cisterns, flush valves, taps, mixers, showers, bidet sprays and basins, and handle complete bathroom plumbing for renovations, working alongside our own tiling, painting and electrical teams on a single schedule.',
         features: ['Toilet, cistern and flush valve repair', 'Taps, mixers and shower fitting', 'Basins, bidet sprays and traps', 'Full bathroom renovation plumbing'],
@@ -949,6 +1328,6 @@ const PLUMBING = {
   },
 }
 
-export const SERVICES_LIST = [PAINTING, SPC, ELECTRICIAN, AC_DUCT, PLUMBING]
+export const SERVICES_LIST = [PAINTING, SPC, ELECTRICIAN, AC_DUCT, PLUMBING, CLEANING, CARPENTER]
 export const SERVICES_BY_PATH = Object.fromEntries(SERVICES_LIST.map((s) => [s.path, s]))
-export { PAINTING, SPC, ELECTRICIAN, AC_DUCT, PLUMBING }
+export { PAINTING, SPC, ELECTRICIAN, AC_DUCT, PLUMBING, CLEANING, CARPENTER }
