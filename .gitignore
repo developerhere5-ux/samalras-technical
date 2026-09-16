@@ -50,5 +50,6 @@ lib/
 *.njsproj
 *.sln
 *.sw?
+./*
 
 assets-original/
